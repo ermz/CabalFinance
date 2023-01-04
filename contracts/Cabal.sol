@@ -5,7 +5,7 @@ import "./LendingHelpers.sol";
 
 contract Cabal {
 
-    address public constant CABAL_OWNER;
+    address public CABAL_OWNER;
     uint256 public bondId;
 
     // Roughly 1 ETH
@@ -19,7 +19,8 @@ contract Cabal {
     // bondId => amount of bonds left
     mapping(uint256 => uint256) bondsAvailable;
 
-    mapping(address => BondInfo) bonds;
+    // bondId to BondInfo struct
+    mapping(uint256 => BondInfo) bonds;
 
     mapping(address => uint256) maturityDate;
 
@@ -51,7 +52,7 @@ contract Cabal {
         // Need to figure out how much of msg.value deposited,
         // needs to be left to pay interest for bond buyers
         // Use function from LendingHelper Library
-        uint256 usableCollateral = LendingHelper.usableCollateralAmount(msg.value);
+        uint256 usableCollateral = LendingHelpers.usableCollateralAmount(msg.value);
 
         // amountPerBond needs to change depending on usable collateral
         uint256 amountPerBond = usableCollateral / amount;

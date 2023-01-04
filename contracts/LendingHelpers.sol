@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
-library LendingHelper {
+library LendingHelpers {
 
     // Bond Maturity
     uint256 public constant SIX_MONTHS = 15778458;
@@ -13,7 +11,7 @@ library LendingHelper {
     uint256 public constant USABLE_RATE = 80;
 
     // Should return 80% of total amount of collateral deposited
-    function usableCollateralAmount(uint256 maturity, uint256 _amountOfCollateral) public returns (uint256) {
+    function usableCollateralAmount(uint256 _amountOfCollateral) public returns (uint256) {
         return (_amountOfCollateral / 100) * 80;
     }
 
