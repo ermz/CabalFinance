@@ -20,8 +20,8 @@ Once user lend money, they will be given ERC20 tokens as equal payment for money
 Ex of interest calculation
 
 6mo - 4%
-1yr - 9%
-2yr - 15%
+1yr - 8%
+2yr - 10%
 
 Potentially check volatility of asset being loaned, maybe last 3 months
 

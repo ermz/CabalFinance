@@ -2,7 +2,24 @@
 pragma solidity ^0.8.9;
 
 library LendingHelper {
-    function usableCollateral(uint256 _amountOfBonds, uint256 maturity, _amountOfCollateral) public {
 
+    // Bond Maturity
+    uint256 public constant SIX_MONTHS = 15778458;
+    uint256 public constant ONE_YEAR = 31556926;
+    uint256 public constant TWO_YEAR = 63113852;
+
+    uint256 public constant USABLE_RATE = 80;
+
+    // Should return 80% of total amount of collateral deposited
+    function usableCollateralAmount(uint256 maturity, uint256 _amountOfCollateral) public return(uint256) {
+        return (_amountOfCollateral / 100) * 80;
+    }
+
+    // type of interest depending on token(sol, crv, etc.)
+    // will use chainlink to measure
+    // Will also depend on maturity
+    function bondInterest(uint256 maturity, string tokenType) {
+        // Should take in tokenType and check it's current price
+        // Check it's previous price and compare, whether or not it's volatile
     }
 }
