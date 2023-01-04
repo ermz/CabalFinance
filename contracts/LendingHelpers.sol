@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
 library LendingHelper {
 
     // Bond Maturity
@@ -11,15 +13,15 @@ library LendingHelper {
     uint256 public constant USABLE_RATE = 80;
 
     // Should return 80% of total amount of collateral deposited
-    function usableCollateralAmount(uint256 maturity, uint256 _amountOfCollateral) public return(uint256) {
+    function usableCollateralAmount(uint256 maturity, uint256 _amountOfCollateral) public returns (uint256) {
         return (_amountOfCollateral / 100) * 80;
     }
 
     // type of interest depending on token(sol, crv, etc.)
     // will use chainlink to measure
     // Will also depend on maturity
-    function bondInterest(uint256 maturity, string tokenType) {
+    // function bondInterest(uint256 maturity, string tokenType) {
         // Should take in tokenType and check it's current price
         // Check it's previous price and compare, whether or not it's volatile
-    }
+    // }
 }

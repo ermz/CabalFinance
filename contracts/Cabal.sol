@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-import "./LendingHelper.sol";
+import "./LendingHelpers.sol";
 
 contract Cabal {
 
@@ -24,14 +24,14 @@ contract Cabal {
     mapping(address => uint256) maturityDate;
 
     struct BondInfo {
-        address owner,
-        uint256 maturity,
-        uint256 bondsIssued,
-        uint2566 perBondAmount,
-        uint256 amountOfBonds
+        address owner;
+        uint256 maturity;
+        uint256 bondsIssued;
+        uint256 perBondAmount;
+        uint256 amountOfBonds;
     }
 
-    consturctor() {
+    constructor() {
         CABAL_OWNER = msg.sender;
     }
 
@@ -42,7 +42,7 @@ contract Cabal {
     // Amount will be used an an assuarance of how much they will get back,
     // In the case that they don't pay back in a timely matter
     // They will lose their CBL Tokens and therefore their ability to get their original collateral back
-    function issueBond(uint256 maturity, uint256 amount) external {
+    function issueBond(uint256 maturity, uint256 amount) external payable {
         // Might use Chainlink to check for how much an ETH is worth currently
         require(msg.value > MINIMUM_BOND_DEPOSIT, "Must deposit atleast one ETH");
 
@@ -51,10 +51,10 @@ contract Cabal {
         // Need to figure out how much of msg.value deposited,
         // needs to be left to pay interest for bond buyers
         // Use function from LendingHelper Library
-        let usableCollateral = usableCollateralAmount(msg.value)
+        uint256 usableCollateral = LendingHelper.usableCollateralAmount(msg.value);
 
         // amountPerBond needs to change depending on usable collateral
-        let amountPerBond = usableCollateral / amount;
+        uint256 amountPerBond = usableCollateral / amount;
 
         bonds[bondId] = BondInfo(
             msg.sender,
