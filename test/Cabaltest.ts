@@ -3,12 +3,16 @@ import { ethers } from "hardhat";
 
 describe("Cabal", function () {
     let CABAL;
+    let owner;
+    let user1;
+    let LendingHelpers;
 
     beforeEach(async () => {
+        [owner, user1] = await ethers.getSigners();
         const LendingHelpers_contract = await ethers.getContractFactory(
             'LendingHelpers'
         )
-        const LendingHelpers = await LendingHelpers_contract.deploy();
+        LendingHelpers = await LendingHelpers_contract.deploy();
 
         const CabalContract = await ethers.getContractFactory("Cabal", {
             libraries: {
@@ -24,7 +28,9 @@ describe("Cabal", function () {
         })
 
         it("should revert if passed an invalid maturity time", async function () {
-            await expect(CABAL.issueBond(100, 1000)).to.be.revertedWith("INVALID maturity time");
+            await expect(CABAL.connect(user1).issueBond(100, 1000, {value: ethers.utils.parseEther("2")})).to.be.revertedWith("INVALID maturity time");
         })
+
+    
     })
 })

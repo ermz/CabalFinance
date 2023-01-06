@@ -15,6 +15,10 @@ library LendingHelpers {
         return (_amountOfCollateral / 100) * 80;
     }
 
+    function simplefunc() public returns(uint256) {
+        return 1;
+    }
+
     // type of interest depending on token(sol, crv, etc.)
     // will use chainlink to measure
     // Will also depend on maturity
