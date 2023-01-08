@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-library LendingHelpers {
+contract LendingHelpersTwo {
     //test nums
-    uint256 public constant testNum = 0;
+    uint256 public testNum;
 
     // Bond Maturity
     uint256 public constant SIX_MONTHS = 15778458;
@@ -13,7 +13,7 @@ library LendingHelpers {
     uint256 public constant USABLE_RATE = 80;
 
     // Should return 80% of total amount of collateral deposited
-    function usableCollateralAmount(uint256 _amountOfCollateral) public view returns (uint256) {
+    function usableCollateralAmount(uint256 _amountOfCollateral) public returns (uint256) {
         return (_amountOfCollateral / 100) * 80;
     }
 

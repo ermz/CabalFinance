@@ -31,6 +31,5 @@ describe("Cabal", function () {
             await expect(CABAL.connect(user1).issueBond(100, 1000, {value: ethers.utils.parseEther("2")})).to.be.revertedWith("INVALID maturity time");
         })
 
-    
     })
 })

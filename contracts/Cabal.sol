@@ -76,8 +76,4 @@ contract Cabal {
     //     require(amount <= bondsAvailable[_bondId], "Trying to purchase too many bonds")
     //     require(msg.value >= bonds[_bondId].perbondAmount * amount, "Not enough to buy/accept bond")
     // }
-
-
-
-
 }
