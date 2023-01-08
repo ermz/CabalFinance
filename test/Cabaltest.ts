@@ -24,11 +24,11 @@ describe("Cabal", function () {
 
     describe("Issue Bond", () => {
         it("should reject call if less than one ETH is passed for Bond collateral", async function () {
-            await expect(CABAL.issueBond(15778458, 1000)).to.be.revertedWith("Must deposit atleast one ETH")
+            await expect(CABAL.issueBond(15778458, 1000,[ethers.constants.AddressZero])).to.be.revertedWith("Must deposit atleast one ETH")
         })
 
         it("should revert if passed an invalid maturity time", async function () {
-            await expect(CABAL.connect(user1).issueBond(100, 1000, {value: ethers.utils.parseEther("2")})).to.be.revertedWith("INVALID maturity time");
+            await expect(CABAL.connect(user1).issueBond(100, 1000, [ethers.constants.AddressZero], {value: ethers.utils.parseEther("2")})).to.be.revertedWith("INVALID maturity time");
         })
 
     })

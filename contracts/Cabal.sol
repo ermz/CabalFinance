@@ -30,6 +30,7 @@ contract Cabal {
         uint256 bondsIssued;
         uint256 perBondAmount;
         uint256 amountOfBonds;
+        address[] allowedTokens;
     }
 
     constructor() {
@@ -43,7 +44,7 @@ contract Cabal {
     // Amount will be used an an assuarance of how much they will get back,
     // In the case that they don't pay back in a timely matter
     // They will lose their CBL Tokens and therefore their ability to get their original collateral back
-    function issueBond(uint256 maturity, uint256 amount) external payable {
+    function issueBond(uint256 maturity, uint256 amount, address[] calldata allowedTokens) external payable {
         // Might use Chainlink to check for how much an ETH is worth currently
         require(msg.value > MINIMUM_BOND_DEPOSIT, "Must deposit atleast one ETH");
 
@@ -62,13 +63,15 @@ contract Cabal {
             maturity,
             msg.value,
             amountPerBond,
-            amount
+            amount,
+            allowedTokens
         );
 
         maturityDate[msg.sender] = block.timestamp + maturity;
 
         bondId = bondId += 1;
 
+        // msg.sender needs to transfer USD or ETH to contract 
         // Transfer CBL Token to  msg.sender
     }
 
