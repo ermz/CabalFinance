@@ -1,9 +1,5 @@
-import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
-import { ethers, waffle } from "hardhat";
-
-const {deployContract} = waffle;
-import LendingHelpersArtifact from "../artifacts/contracts/LendingHelpersTwo.sol/LendingHelpersTwo.json";
+import { ethers } from "hardhat";
 
 describe("LendingHelpers", function () {
     let lendingHelpers;
